@@ -1,0 +1,12 @@
+schema: "classroom50/repo-config/v1"
+classroom: "a-a"
+assignment: "take-home-assignment"
+owner:
+  username: "HenawelaAnushkaGirakaduwa"
+  id: 185998112
+  accepted_at: "2026-09-09T11:53:52Z"
+source:
+  owner: "RMIT-COSC2123-3119-AA26-Sem2"
+  owner_id: 304194099
+  repo: "Take-home-Assignment-Template"
+  branch: "main"
