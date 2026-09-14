@@ -110,6 +110,17 @@ class AdjacencyList(Graph):
         # entry, False if the chain had none for that neighbour.
         # HINT: track the previous node so you can bypass the one you
         # remove; the head (no previous node) is the case to watch.
+        prev = None
+        node = self._heads[slot]
+        while node is not None:
+            if node.neighbour == neighbour:
+                if prev is None:
+                    self._heads[slot] = node.next
+                else:
+                    prev.next = node.next
+                return True
+            prev = node
+            node = node.next
         return False
 
     def add_vertex(self, vertex: Vertex) -> bool:
