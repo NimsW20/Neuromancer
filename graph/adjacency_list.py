@@ -145,7 +145,15 @@ class AdjacencyList(Graph):
         # u == v, weight < 1, or the connection already exists.
         # HINT: _pos gives a vertex's slot; _find_node checks whether a
         # connection is already there.
-        return False
+        pu, pv = self._pos(u), self._pos(v)
+        if pu is None or pv is None or pu == pv or weight < 1:
+            return False
+        if self._find_node(pu, v) is not None:
+            return False
+        self._heads[pu] = LinkedListNode(v, weight, self._heads[pu])
+        self._heads[pv] = LinkedListNode(u, weight, self._heads[pv])
+        self._num_edges += 1
+        return True
 
     def remove_edge(self, u: Vertex, v: Vertex) -> bool:
         """
