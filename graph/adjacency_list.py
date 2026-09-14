@@ -199,7 +199,16 @@ class AdjacencyList(Graph):
         # Return True if it existed and was updated, False otherwise.
         # HINT: changing a weight is not the same as adding a fresh
         # connection --- find the existing entry rather than prepending.
-        return False
+        pu, pv = self._pos(u), self._pos(v)
+        if pu is None or pv is None or weight < 1:
+            return False
+        node_uv = self._find_node(pu, v)
+        if node_uv is None:
+            return False
+        node_uv.weight = weight
+        node_vu = self._find_node(pv, u)
+        node_vu.weight = weight
+        return True
 
     def get_vertices(self) -> list[Vertex]:
         """
