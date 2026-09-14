@@ -181,7 +181,15 @@ class AdjacencyList(Graph):
         # existed and was removed, False otherwise.
         # HINT: _delete_node (which you implement above) unlinks one
         # entry from one chain.
-        return False
+        pu, pv = self._pos(u), self._pos(v)
+        if pu is None or pv is None:
+            return False
+        removed = self._delete_node(pu, v)
+        if not removed:
+            return False
+        self._delete_node(pv, u)
+        self._num_edges -= 1
+        return True
 
     def update_edge_weight(self, u: Vertex, v: Vertex, weight: int) -> bool:
         """
